@@ -16,16 +16,17 @@ InfraIntel processes network tower data and uses geographical information about 
 
 ## 💻 Usage
 
-1. Download the Dataset from the following link and paste them into **data** folder in the root directory
-2. **Run the application**: Ensure all dependencies are installed, then execute the script.
+1. Create a virtual environment and install the dependencies using the requirements.txt file
+2. Download the Dataset from [here](https://drive.google.com/drive/folders/1gliQCbbAX8s4cyq0gpQKvZjnMpbnEPiI) and paste them into **data** folder in the root directory
+3. **Run the application**: Ensure all dependencies are installed, then execute the script.
     
     ```
     streamlit run app.py
     ```
     
-3. **Select a school**: Use the sidebar dropdown to choose a school location.
-4. **Update information**: Click the update button after selecting a school to refresh data. 
-5. **View the network insights**:
+4. **Select a country and school**: Use the sidebar dropdown to choose a school location.
+5. **Update information**: Click the update button after selecting a school to refresh data. 
+6. **View the network insights**:
     
     - The map displays network tower locations.
         
@@ -41,4 +42,4 @@ InfraIntel processes network tower data and uses geographical information about 
     
 - **Data Processing**: Pandas and NumPy for handling and summarizing network data.
 
-- **Langchain OpenAI & Gemini**: Utilize Network data to generate analysis and devise network planning strategies.
+- **Gemini**: Utilize Network data to generate analysis and devise network planning strategies.
