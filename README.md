@@ -5,7 +5,7 @@ gNIPP is an AI-powered network infrastructure analysis tool designed to provide 
 
 ## 🔎 How it Works
 
-InfraIntel processes network tower data and uses geographical information about schools to analyze the wireless network infrastructure available to these regions.
+gNIPP processes network tower data and uses geographical information about schools to analyze the wireless network infrastructure available to these regions.
 
 - Curated Dataset for School geographical information and details regarding their network performance made available through Giga School Mapping Data
   
