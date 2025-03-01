@@ -24,23 +24,26 @@ gNIPP processes network tower data and uses geographical information about schoo
 
 1. Create a virtual environment and install the dependencies using the requirements.txt file
 2. Download the Dataset from [here](https://drive.google.com/drive/folders/1gliQCbbAX8s4cyq0gpQKvZjnMpbnEPiI) and paste them into **data** folder in the root directory
-3. If Rag DB not created yet first download the data from [here](https://drive.google.com/file/d/1l13gzPOywjLYtO1XQek-EZcB9Awy2Teq/view?usp=sharing) and place in data directory. Then run create_rag_db.py file
-4. **Run the application**: Ensure all dependencies are installed, then execute the script.
+3. If Rag DB not created yet first download the data from [here](https://drive.google.com/file/d/1l13gzPOywjLYtO1XQek-EZcB9Awy2Teq/view?usp=sharing) and place in data directory. Then run`
+    ```
+    python create_rag_db.py file
+    ```
+5. **Run the application**: Ensure all dependencies are installed, then execute the script.
     
     ```
     streamlit run app.py
     ```
     
-5. **Select a country and school**: Use the sidebar dropdown to choose a school location.
-6. **Update information**: Click the update button after selecting a school to refresh data. 
-7. **View the network insights**:
+6. **Select a country and school**: Use the sidebar dropdown to choose a school location.
+7. **Update information**: Click the update button after selecting a school to refresh data. 
+8. **View the network insights**:
     
     - The map displays network tower locations.
         
     - The summary section provides details about the network infrastructure.
-8. **Visualize Metrics**: Using the heatmap page allowing quick and easy visualization of key metrics
-9. **Understand Keywords**: By utilizing agentic AI and fetching information from wikipedia
-10. **Query Procurement Policies**: Using RAG to get access to the GDDP Data and procurement policies of country of interest by querying using natural language
+9. **Visualize Metrics**: Using the heatmap page allowing quick and easy visualization of key metrics
+10. **Understand Keywords**: By utilizing agentic AI and fetching information from wikipedia
+11. **Query Procurement Policies**: Using RAG to get access to the GDDP Data and procurement policies of country of interest by querying using natural language
     
 
 ## 🧰 Tech Stack
