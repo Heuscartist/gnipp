@@ -8,9 +8,11 @@ from typing_extensions import TypedDict
 from langgraph.graph import StateGraph, START, END
 from langgraph.graph.message import add_messages
 from langgraph.prebuilt import ToolNode, tools_condition
-from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain_google_genai import ChatGoogleGenerativeAI, GoogleGenerativeAIEmbeddings
 from langchain.prompts import ChatPromptTemplate
 from langchain.schema.runnable import RunnablePassthrough
+from langchain_chroma import Chroma
+from langchain.chains import RetrievalQA
 
 import os
 from dotenv import load_dotenv
@@ -97,3 +99,41 @@ def generate_ai_recommendation_gemini(school_name, has_connectivity, connectivit
         return response.content  # Extract recommendation from LangChain's response
     except Exception as e:
         return f"Error generating recommendation: {e}"
+    
+
+
+# Initialize LLM and vectorstore
+def initialize_rag():
+    llm = ChatGoogleGenerativeAI(model="gemini-1.5-flash", google_api_key=GEMINI_API_KEY)
+    embedding_function = GoogleGenerativeAIEmbeddings(model="models/embedding-001", google_api_key=GEMINI_API_KEY)
+    vectorstore = Chroma(persist_directory="chroma_db", embedding_function=embedding_function)
+    retriever = vectorstore.as_retriever(search_type="similarity", search_kwargs={"k": 1})
+    
+    prompt_template = ChatPromptTemplate.from_template(
+        """You are an AI assistant helping with information retrieval.
+        
+        Use the following retrieved context to answer the question accurately.
+
+        Context:
+        {context}
+
+        Question:
+        {question}
+
+        Answer:
+        """
+    )
+
+    qa_chain = RetrievalQA.from_chain_type(
+        llm=llm,
+        retriever=retriever,
+        chain_type="stuff",  # Stuffing retrieved docs into a single prompt
+        return_source_documents=True  # Useful for debugging or citations
+    )
+    return qa_chain
+
+# Function to query RAG model
+def ask_rag_llm(query):
+    qa_chain = initialize_rag()
+    result = qa_chain.invoke(query)
+    return result["result"]

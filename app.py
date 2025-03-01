@@ -7,16 +7,16 @@ import pandas as pd
 # Import modularized functions
 from data_loader import load_data
 from network_data import fetch_network_towers, summarize_tower_data
-from ai_expert import build_agentic_graph, stream_tool_responses, generate_ai_recommendation_gemini
+from ai_expert import build_agentic_graph, stream_tool_responses, generate_ai_recommendation_gemini, ask_rag_llm
 
 # Load data
-schools_df, connectivity_df = load_data()
+schools_df, connectivity_df, gppd_data= load_data()
 merged_df = pd.merge(schools_df, connectivity_df, on="school_id_giga", how="left")
 
 # Sidebar Navigation
 graph = build_agentic_graph()
 st.sidebar.title("📌 Navigation")
-page = st.sidebar.radio("Go to", ["Home", "Internet Speed Heatmap", "Agentic Wikipedia Query"])
+page = st.sidebar.radio("Go to", ["Home", "Internet Speed Heatmap", "Agentic Wikipedia Query & RAG Procurement Policies"])
 
 if page == "Home":
     st.title("gNIPP - Geonetwork Infrastructure Planning and Procurement")
@@ -90,11 +90,20 @@ elif page == "Internet Speed Heatmap":
     folium_static(m)
 
     
-elif page == "Agentic Wikipedia Query":
-    st.title("📝 Agentic Wikipedia Query")
+elif page == "Agentic Wikipedia Query & RAG Procurement Policies":
+    st.title("📝 Agentic Wikipedia Query & RAG Procurement Policies")
     user_text = st.text_input("Search the Wiki: eg. Describe LTE Towers:")
     
     if st.button("Submit"):
         st.success("Fetching Response using Agent")
         agentic_response = stream_tool_responses(graph, user_text)
         st.markdown(f"<div style='background-color: rgba(50, 50, 50, 0.8); padding: 10px; border-radius: 10px; color: white;'>{agentic_response}</div>", unsafe_allow_html=True)
+    
+    rag_query = st.text_input("Procurement Policy Details:")
+    if st.button("Query RAG LLM"):
+        if rag_query:
+            with st.spinner("Fetching answer from RAG model..."):
+                rag_response = ask_rag_llm(rag_query)
+            st.markdown(f"<div style='background-color: rgba(50, 50, 50, 0.8); padding: 10px; border-radius: 10px; color: white;'>{rag_response}</div>", unsafe_allow_html=True)
+        else:
+            st.error("Please enter a query for the RAG model.")
