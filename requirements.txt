@@ -7,3 +7,4 @@ openai
 wikipedia
 google-generativeai
 st-gsheets-connection
+dotenv
