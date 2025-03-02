@@ -21,10 +21,15 @@ gNIPP processes network tower data and uses geographical information about schoo
     
 
 ## 💻 Usage
+**ONLINE DEMO:** https://j3mcxqbihwpt3beedjcje2.streamlit.app/
 
-1. Create a virtual environment and install the dependencies using the requirements.txt file
-2. Download the Dataset from [here](https://drive.google.com/drive/folders/1gliQCbbAX8s4cyq0gpQKvZjnMpbnEPiI) and paste them into **data** folder in the root directory
-3. If Rag DB not created yet first download the data from [here](https://drive.google.com/file/d/1l13gzPOywjLYtO1XQek-EZcB9Awy2Teq/view?usp=sharing) and place in data directory. Then run`
+**Running it Locally**
+1. Download the Repo and uncomment the following lines of code:
+     **ai_expert.py**: Line 14 and line 105-139
+     **app.py**: Line 103-110
+2. Create a virtual environment and install the dependencies using the requirements.txt file
+3. Download the Dataset from [here](https://drive.google.com/drive/folders/1gliQCbbAX8s4cyq0gpQKvZjnMpbnEPiI) and paste them into **data** folder in the root directory
+4. If Rag DB not created yet first download the data from [here](https://drive.google.com/file/d/1l13gzPOywjLYtO1XQek-EZcB9Awy2Teq/view?usp=sharing) and place in data directory. Then run`
     ```
     python create_rag_db.py
     ```
