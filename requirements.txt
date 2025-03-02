@@ -10,3 +10,4 @@ st-gsheets-connection
 dotenv
 langchain_community
 langgraph
+langchain_google_genai
