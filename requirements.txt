@@ -8,3 +8,4 @@ wikipedia
 google-generativeai
 st-gsheets-connection
 dotenv
+langchain_community
