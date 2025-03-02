@@ -11,3 +11,5 @@ dotenv
 langchain_community
 langgraph
 langchain_google_genai
+langchain_chroma
+chromadb
