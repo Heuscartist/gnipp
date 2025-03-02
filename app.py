@@ -7,7 +7,8 @@ import pandas as pd
 # Import modularized functions
 from data_loader import load_data
 from network_data import fetch_network_towers, summarize_tower_data
-from ai_expert import build_agentic_graph, stream_tool_responses, generate_ai_recommendation_gemini, ask_rag_llm
+from ai_expert import build_agentic_graph, stream_tool_responses, generate_ai_recommendation_gemini
+# from ai_expert import ask_rag_llm
 
 # Load data
 schools_df, connectivity_df, gppd_data= load_data()
@@ -99,11 +100,11 @@ elif page == "Agentic Wikipedia Query & RAG Procurement Policies":
         agentic_response = stream_tool_responses(graph, user_text)
         st.markdown(f"<div style='background-color: rgba(50, 50, 50, 0.8); padding: 10px; border-radius: 10px; color: white;'>{agentic_response}</div>", unsafe_allow_html=True)
     
-    rag_query = st.text_input("Procurement Policy Details:")
-    if st.button("Query RAG LLM"):
-        if rag_query:
-            with st.spinner("Fetching answer from RAG model..."):
-                rag_response = ask_rag_llm(rag_query)
-            st.markdown(f"<div style='background-color: rgba(50, 50, 50, 0.8); padding: 10px; border-radius: 10px; color: white;'>{rag_response}</div>", unsafe_allow_html=True)
-        else:
-            st.error("Please enter a query for the RAG model.")
+#    rag_query = st.text_input("Procurement Policy Details:")
+#    if st.button("Query RAG LLM"):
+#        if rag_query:
+#            with st.spinner("Fetching answer from RAG model..."):
+#                rag_response = ask_rag_llm(rag_query)
+#            st.markdown(f"<div style='background-color: rgba(50, 50, 50, 0.8); padding: 10px; border-radius: 10px; color: white;'>{rag_response}</div>", unsafe_allow_html=True)
+#        else:
+#            st.error("Please enter a query for the RAG model.")
